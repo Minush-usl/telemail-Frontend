@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="container__item d-flex justify-content-center">
+    <ag-grid-angular
+      style="width: 500px; height: 500px; color: var(--primary); border: aquamarine 1px solid;"
+      class="ag-theme-balham"
+      [rowData]="rowData"
+      [columnDefs]="columnDefs"
+      [frameworkComponents]="frameworkComponents"
+      (gridReady)="onGridReady($event)"
+    >
+    </ag-grid-angular>
+  </div>
+</div>

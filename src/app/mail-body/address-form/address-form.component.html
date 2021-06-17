@@ -1,0 +1,11 @@
+<div class=" d-flex flex-column">
+  <div class="p2 d-flex justify-content-center">
+    <h2 class="title">Your temporary e-mail address</h2>
+  </div>
+  <div class="container__item p2 d-flex justify-content-center">
+    <form class="form">
+      <input type="email" class="form__field" readonly value="{{ (emailUser$ | async)?.login }}@telemail.fun"/>
+      <button type="button" class="btn btn--primary btn--inside uppercase">Copy</button>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="body">
+  <div class="container">
+    <app-address-form 
+      [emailUser$] = "emailUser$">
+      
+    </app-address-form>
+    <app-btns-section
+      (userMailEvent) = "changeUser($event)">
+
+    </app-btns-section>
+    <app-messages-box
+      [emailUser$] = "emailUser$">
+
+    </app-messages-box>
+  </div>
+</div>
