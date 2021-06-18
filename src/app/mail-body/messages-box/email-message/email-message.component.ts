@@ -14,6 +14,8 @@ export class EmailMessageComponent implements OnInit {
 
   public chosenEmail: UserMails;
   private emailId: string;
+  public extractedEmail: string;
+  
 
   constructor(
     private route: ActivatedRoute,
@@ -38,7 +40,7 @@ export class EmailMessageComponent implements OnInit {
       ).subscribe(
         (mails: Array<UserMails>) => {
           this.chosenEmail = mails.find(email => email.date == this.emailId)
-          console.log(this.chosenEmail)
+          this.extractedEmail = this.extractLinkIndex(this.chosenEmail.text)
         }
       )
   }
@@ -47,4 +49,14 @@ export class EmailMessageComponent implements OnInit {
     this.router.navigate([''])
   }
 
+  private extractLinkIndex(text: string): string | null {
+    const foundLinks = /(https?:\/\/[^\s]+)/g.exec(text);
+
+    if (foundLinks) {
+      return foundLinks[0]
+    }
+    else {
+      return null
+    }
+  }
 }

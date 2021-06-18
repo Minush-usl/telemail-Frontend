@@ -23,7 +23,7 @@ import { AppRoutingModule } from './app-routing.module';
     MessagesBoxComponent,
     BtnsSectionComponent,
     EmailCellRendererComponent,
-    EmailMessageComponent
+    EmailMessageComponent,
   ],
   imports: [
     BrowserModule,

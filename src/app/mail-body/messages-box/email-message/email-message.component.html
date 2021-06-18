@@ -1,6 +1,6 @@
 <div class="body">
   <div class="container">
-    <div class="card" *ngIf="chosenEmail">
+    <div class="card" *ngIf="chosenEmail; else loader">
       <span (click)="back()"><i class="fas fa-angle-left"></i></span>
       <div>
         <span><i class="far fa-smile"></i>
@@ -17,7 +17,28 @@
         <p>{{ chosenEmail.title }}</p>
       </div>
       <div class="divider"></div>
-      <p>{{ chosenEmail.text }}</p>
+      <div *ngIf="extractedEmail; else: noLink">
+        <p>{{ chosenEmail.text.replace(extractedEmail) }}</p>
+        <a [href] = "extractedEmail">
+          {{ extractedEmail }}
+        </a>
+      </div>
+
+      <ng-template #noLink>
+        <p>{{ chosenEmail.text }}</p>
+      </ng-template>
+      
     </div>
+
+    <ng-template #loader>
+
+      <div class="d-flex justify-content-center">
+        <div class="spinner-border text-primary d-flex" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+
+    </ng-template>
+    
   </div>
 </div>

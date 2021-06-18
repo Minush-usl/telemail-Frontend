@@ -11,7 +11,7 @@ import {
     <a
       [routerLink]="['/mails', this.params.value]"
     >
-      <i class="far fa-angle-right"></i>
+      <i class="fas fa-chevron-down"></i>
     </a>
   `,
   // styleUrls: ["./email-cell-renderer.component.scss"],
