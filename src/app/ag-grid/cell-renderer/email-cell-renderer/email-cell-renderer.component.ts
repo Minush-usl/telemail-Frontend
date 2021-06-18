@@ -1,34 +1,39 @@
-import { Component, OnInit } from '@angular/core';
-import { ICellRendererAngularComp } from 'ag-grid-angular';
-import { ICellRendererParams, IAfterGuiAttachedParams } from 'ag-grid-community';
+import { Component, OnInit } from "@angular/core";
+import { ICellRendererAngularComp } from "ag-grid-angular";
+import {
+  ICellRendererParams,
+  IAfterGuiAttachedParams,
+} from "ag-grid-community";
 
 @Component({
-  selector: 'app-email-cell-renderer',
+  selector: "app-email-cell-renderer",
   template: `
-  <button (click)="btnClickedHandler($event)">click me</button>
+    <!-- <button (click)="btnClickedHandler($event)">click me</button> -->
+    <a
+      [routerLink]="['/mails', this.params.value]"
+    >
+      <i class="fas fa-chevron-down"></i>
+    </a>
   `,
-  styleUrls: ['./email-cell-renderer.component.scss']
+  styleUrls: ["./email-cell-renderer.component.scss"],
 })
 export class EmailCellRendererComponent implements ICellRendererAngularComp {
+  public params: any;
 
-  private params: any;
-
-  constructor() { }
+  constructor() {}
   refresh(params: any): boolean {
-    throw new Error('Method not implemented.');
+    throw new Error("Method not implemented.");
   }
   agInit(params: any): void {
-    this.params = params
+    this.params = params;
   }
   afterGuiAttached?(params?: IAfterGuiAttachedParams): void {
-    throw new Error('Method not implemented.');
+    throw new Error("Method not implemented.");
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  public btnClickedHandler() {
-    this.params.clicked(this.params.value);
-  }
-
+  // public btnClickedHandler() {
+  //   this.params.clicked(this.params.value);
+  // }
 }

@@ -10,6 +10,9 @@ import { MessagesBoxComponent } from './mail-body/messages-box/messages-box.comp
 import { BtnsSectionComponent } from './mail-body/btns-section/btns-section.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { EmailCellRendererComponent } from './ag-grid/cell-renderer/email-cell-renderer/email-cell-renderer.component';
+import { EmailMessageComponent } from './mail-body/messages-box/email-message/email-message.component';
+import { AppRoutingModule } from './app-routing.module';
+
 
 @NgModule({
   declarations: [
@@ -19,11 +22,13 @@ import { EmailCellRendererComponent } from './ag-grid/cell-renderer/email-cell-r
     AddressFormComponent,
     MessagesBoxComponent,
     BtnsSectionComponent,
-    EmailCellRendererComponent
+    EmailCellRendererComponent,
+    EmailMessageComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    AppRoutingModule,
     AgGridModule.withComponents([EmailCellRendererComponent])
   ],
   providers: [],
