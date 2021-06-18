@@ -30,4 +30,8 @@ export class BtnsSectionComponent implements OnDestroy {
       this.newUserSub.unsubscribe();
     }
   }
+
+  public refreshPage() {
+    window.location.reload();
+  }
 }

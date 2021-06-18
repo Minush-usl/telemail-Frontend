@@ -12,5 +12,13 @@ export class AddressFormComponent {
 
   @Input() emailUser$: Observable<MailUser>;
 
+  public text = "heeeeu"
+
   constructor() { }
+
+  public copyEmail(userEmail) {
+    userEmail.select();
+    document.execCommand('Copy');
+    userEmail.setSelectionRange(0, 0);
+  }
 }
