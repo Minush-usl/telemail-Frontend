@@ -5,10 +5,14 @@ import { EmailMessageComponent } from './mail-body/messages-box/email-message/em
 
 const routes: Routes = [
     {
-        path: '', component: MailBodyComponent, children: [
-            {path: "mails/:date", component: EmailMessageComponent}
-        ]
+        path: '', component: MailBodyComponent, 
+    },
+
+    {
+        path: 'mails/:id', component: EmailMessageComponent
     }
+
+
 ];
 
 @NgModule({

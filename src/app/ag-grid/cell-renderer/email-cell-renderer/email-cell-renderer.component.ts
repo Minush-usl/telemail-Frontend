@@ -8,14 +8,13 @@ import {
 @Component({
   selector: "app-email-cell-renderer",
   template: `
-    <!-- <button (click)="btnClickedHandler($event)">click me</button> -->
     <a
       [routerLink]="['/mails', this.params.value]"
     >
-      <i class="fas fa-chevron-down"></i>
+      <i class="far fa-angle-right"></i>
     </a>
   `,
-  styleUrls: ["./email-cell-renderer.component.scss"],
+  // styleUrls: ["./email-cell-renderer.component.scss"],
 })
 export class EmailCellRendererComponent implements ICellRendererAngularComp {
   public params: any;

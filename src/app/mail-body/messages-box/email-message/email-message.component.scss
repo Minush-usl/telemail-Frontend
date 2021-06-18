@@ -1,0 +1,19 @@
+
+.card {
+    background-color: var(--bg);
+    border: var(--primary) 1px solid;
+    width: 500px;
+    min-height: 200px;
+    margin: 0 auto;
+    color: white;
+    padding: 2em;
+}
+
+.body {
+    height: 100%;
+}
+
+.divider {
+    border: var(--primary) 1px solid;
+}
+

@@ -1,3 +1,23 @@
-<p>
-  email-message works!
-</p>
+<div class="body">
+  <div class="container">
+    <div class="card" *ngIf="chosenEmail">
+      <span (click)="back()"><i class="fas fa-angle-left"></i></span>
+      <div>
+        <span><i class="far fa-smile"></i>
+        <small> From:</small>
+        <h4>
+          {{ chosenEmail.from_user }}
+        </h4></span>
+        <small>Date: {{ chosenEmail.date.split('T')[0] + " " +  chosenEmail.date.split('T')[1].split("+")[0]}}</small>
+      </div>
+      <div class="divider"></div> 
+      <div>
+        <small >Title:</small>
+        <br>
+        <p>{{ chosenEmail.title }}</p>
+      </div>
+      <div class="divider"></div>
+      <p>{{ chosenEmail.text }}</p>
+    </div>
+  </div>
+</div>

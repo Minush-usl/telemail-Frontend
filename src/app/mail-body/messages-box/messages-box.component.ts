@@ -49,7 +49,7 @@ export class MessagesBoxComponent implements OnInit {
 
 
   ngOnInit() {
-    interval(5000).subscribe(() => {
+    interval(10000).subscribe(() => {
       this.emailUser$.subscribe((user: MailUser) => {
         this.userMailService
           .getUserMails(user.telegram_id)
