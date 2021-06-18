@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input} from '@angular/core';
 import { Observable } from 'rxjs';
 import { UserMailService } from '../../services/user-mail.service';
 import { MailUser } from '../../interfaces'
@@ -8,16 +8,9 @@ import { MailUser } from '../../interfaces'
   templateUrl: './address-form.component.html',
   styleUrls: ['./address-form.component.scss']
 })
-export class AddressFormComponent implements OnInit {
+export class AddressFormComponent {
 
   @Input() emailUser$: Observable<MailUser>;
 
-  constructor(
-    private userMailService: UserMailService
-  ) { }
-
-  ngOnInit() {
-
-  }
-
+  constructor() { }
 }

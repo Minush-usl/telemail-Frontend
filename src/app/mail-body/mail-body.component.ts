@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { MailUser } from '../interfaces';
 import { UserMailService } from '../services/user-mail.service'
 
@@ -8,13 +8,15 @@ import { UserMailService } from '../services/user-mail.service'
   templateUrl: './mail-body.component.html',
   styleUrls: ['./mail-body.component.scss']
 })
-export class MailBodyComponent implements OnInit {
+export class MailBodyComponent implements OnInit, OnDestroy {
 
   private _emailUser$ = new BehaviorSubject(null);
 
   public get emailUser$(): Observable<MailUser> {
     return this._emailUser$.asObservable();
   }
+
+  private userSub: Subscription;
 
 
   constructor(
@@ -26,14 +28,19 @@ export class MailBodyComponent implements OnInit {
     if (address) {
       this._emailUser$.next(address)
     } else {
-      this.userMailService.createUser().subscribe(
+      this.userSub = this.userMailService.createUser().subscribe(
         () => this._emailUser$.next(this.userMailService.getCurrentUser())
       )
     }
   }
 
+  ngOnDestroy(): void {
+    if (this.userSub) {
+      this.userSub.unsubscribe();
+    }
+  }
+
   public changeUser(newUser: MailUser): void {
-    console.log("new user througn emit")
     this._emailUser$.next(newUser)
   }
 

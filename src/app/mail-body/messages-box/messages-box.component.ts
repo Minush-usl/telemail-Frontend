@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { BehaviorSubject, Observable } from "rxjs";
+import { Component, Input, OnInit, OnDestroy } from "@angular/core";
+import { BehaviorSubject, Observable, Subscription } from "rxjs";
 import { MailUser, UserMails } from "src/app/interfaces";
 import { UserMailService } from "../../services/user-mail.service";
 import { EmailCellRendererComponent } from "../../ag-grid/cell-renderer/email-cell-renderer";
@@ -11,7 +11,7 @@ import { map } from "rxjs/operators";
   templateUrl: "./messages-box.component.html",
   styleUrls: ["./messages-box.component.scss"],
 })
-export class MessagesBoxComponent implements OnInit {
+export class MessagesBoxComponent implements OnInit, OnDestroy {
   @Input() emailUser$: Observable<MailUser>;
 
   // public userMails$: BehaviorSubject<Array<UserMails>> = new BehaviorSubject<Array<UserMails>>([]);
@@ -23,6 +23,8 @@ export class MessagesBoxComponent implements OnInit {
   public columnDefs;
   public rowData: Array<any> = [];
   public frameworkComponents;
+
+  private iSub: Subscription;
 
   constructor(private userMailService: UserMailService) {
     this.columnDefs = [
@@ -47,9 +49,12 @@ export class MessagesBoxComponent implements OnInit {
     };
   }
 
+  ngOnDestroy(): void {
+    this.iSub.unsubscribe()
+  }
 
   ngOnInit() {
-    interval(10000).subscribe(() => {
+    this.iSub = interval(5000).subscribe(() => {
       this.emailUser$.subscribe((user: MailUser) => {
         this.userMailService
           .getUserMails(user.telegram_id)
@@ -66,7 +71,7 @@ export class MessagesBoxComponent implements OnInit {
             });
           });
       });
-    });
+    },);
   }
 
   onGridReady(params) {
